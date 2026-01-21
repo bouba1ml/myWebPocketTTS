@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,16 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <header>
             <div class="logo">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
-                    <path d="M11 7H13V13H11V7ZM11 15H13V17H11V15Z" fill="currentColor"/>
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+                        fill="currentColor" />
+                    <path d="M11 7H13V13H11V7ZM11 15H13V17H11V15Z" fill="currentColor" />
                 </svg>
                 <h1>WebPocketTTS</h1>
             </div>
@@ -22,13 +26,41 @@
 
         <main>
             <div class="card input-card">
-                <div class="form-group">
+                <div class="tabs">
+                    <button id="tab-preset" class="tab active">Preset Voice</button>
+                    <button id="tab-clone" class="tab">Clone Voice</button>
+                </div>
+
+                <div id="section-preset" class="form-group">
                     <label for="voice-select">Voice Model</label>
                     <select id="voice-select">
                         <option value="" disabled selected>Loading voices...</option>
                     </select>
                 </div>
-                
+
+                <div id="section-clone" class="form-group hidden">
+                    <label for="voice-file">Upload Voice Sample (.wav)</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="voice-file" accept=".wav">
+                        <span class="file-custom">Choose a WAV file...</span>
+                    </div>
+                    <p class="hint">Upload a short (e.g. 5-10s) clean WAV file.</p>
+
+                    <button class="help-toggle" id="auth-help-btn">⚠️ Trouble Cloning?</button>
+
+                    <div id="auth-help-content" class="info-box hidden">
+                        <h4>Voice Cloning Requires Setup</h4>
+                        <ol>
+                            <li>Go to <a href="https://huggingface.co/kyutai/pocket-tts" target="_blank">Pocket TTS on
+                                    Hugging Face</a> and accept the terms.</li>
+                            <li>Create a <strong>Read</strong> token in your <a
+                                    href="https://huggingface.co/settings/tokens" target="_blank">HF Settings</a>.</li>
+                            <li>Run <code>setup_hf.bat</code> in the app folder and paste your token.</li>
+                            <li>Restart the app.</li>
+                        </ol>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="text-input">Text to Speak</label>
                     <textarea id="text-input" placeholder="Enter your text here..." rows="4"></textarea>
@@ -51,14 +83,20 @@
                     <a id="download-link" class="download-link" href="#" download="generated_audio.wav">Download WAV</a>
                 </div>
             </div>
-            
+
             <div id="error-message" class="error-toast hidden"></div>
         </main>
-        
+
         <footer>
-            <p>Powered by <a href="https://github.com/kyutai-labs/pocket-tts" target="_blank">Pocket TTS</a></p>
+            <div class="status-bar">
+                <span id="app-version">v1.0.0</span> |
+                <span id="connection-status" class="status-badge checking">Checking connection...</span> |
+                <span id="auth-status-display" class="status-badge">Auth: Checking...</span>
+            </div>
+            <p>Runs locally via Pocket TTS</p>
         </footer>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
