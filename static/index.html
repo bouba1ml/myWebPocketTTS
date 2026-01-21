@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebPocketTTS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
+                    <path d="M11 7H13V13H11V7ZM11 15H13V17H11V15Z" fill="currentColor"/>
+                </svg>
+                <h1>WebPocketTTS</h1>
+            </div>
+            <p class="subtitle">High-quality local text-to-speech</p>
+        </header>
+
+        <main>
+            <div class="card input-card">
+                <div class="form-group">
+                    <label for="voice-select">Voice Model</label>
+                    <select id="voice-select">
+                        <option value="" disabled selected>Loading voices...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="text-input">Text to Speak</label>
+                    <textarea id="text-input" placeholder="Enter your text here..." rows="4"></textarea>
+                </div>
+
+                <div class="actions">
+                    <button id="generate-btn" class="btn primary">
+                        <span class="btn-text">Generate Audio</span>
+                        <div class="spinner text-hidden"></div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card output-card hidden" id="output-card">
+                <div class="audio-player-wrapper">
+                    <h3>Generated Audio</h3>
+                    <audio id="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a id="download-link" class="download-link" href="#" download="generated_audio.wav">Download WAV</a>
+                </div>
+            </div>
+            
+            <div id="error-message" class="error-toast hidden"></div>
+        </main>
+        
+        <footer>
+            <p>Powered by <a href="https://github.com/kyutai-labs/pocket-tts" target="_blank">Pocket TTS</a></p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
